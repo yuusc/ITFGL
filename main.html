@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="build/three.min.js"></script>
+    <script type="text/javascript" src="examples/js/orbit.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            padding: 1px;
+            box-sizing: border-box;
+            text-align: center;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            z-index: 1;
+            font-size: 0.5rem;
+        }
+
+        #dqboard {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            bottom: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 黒板 */
+        .blackboard {
+            width: 80%;
+            height: 100%;
+            margin: auto;
+            padding: 0.5rem;
+            color: #fff;
+            border: 1px solid #000;
+            border-radius: 3px;
+            box-shadow: 0 0 0 4px #fff inset;
+            background-color: rgba(0, 0, 0, 0.9);
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        #message {
+            padding-left: 1rem;
+            font-size: 1rem;
+        }
+
+        .blink-after::after {
+            content: '_';
+            animation: blink 1.4s infinite;
+        }
+
+        /* 点滅 */
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+    </style>
+  </head>
+  <body>
+</div>
+<canvas id="myCanvas" style="position:fixed; top:0px; left:0px; width:100%; height:100%; z-index: 0; background-color: #000000;"></canvas>
+<!-- その真上に、2D描画領域のためのdiv要素を配置 -->
+<canvas id="canvas2d" style="position:fixed; top:0px; left:0px; width:100%; height:100%; z-index: 100; background-color:rgba(0,0,0,0);"></canvas>
+    <div id="dqboard">
+        <div class="blackboard">
+            <div id="message" class="blink-after">
+              ITF-2 webGL DEMO
+              <br>
+              上下左右のボタンをクリックすると衛星を回転させることが出来ます．
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
