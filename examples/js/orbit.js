@@ -81,16 +81,28 @@ if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches)
 var geometry = new THREE.BoxGeometry(60,60,60);
 var material = new THREE.MeshPhongMaterial( { color: '#ffffff' } );
 
-var button1 = new THREE.Mesh( geometry, material );
+var materialb1 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/up.jpg')
+})
+var materialb2 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/down.jpg')
+})
+var materialb3 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/right.jpg')
+})
+var materialb4 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/left.jpg')
+})
+var button1 = new THREE.Mesh( geometry, [material,material,material,material,materialb1,material] );
 button1.position.set(0, 320, 0);
 button1.name = 'up';
-var button2 = new THREE.Mesh( geometry, material );
+var button2 = new THREE.Mesh( geometry, [material,material,material,material,materialb2,material] );
 button2.position.set(0, -320, 0);
 button2.name = 'down';
-var button3 = new THREE.Mesh( geometry, material );
+var button3 = new THREE.Mesh( geometry, [material,material,material,material,materialb3,material] );
 button3.position.set(320, 0, 0);
 button3.name = 'right';
-var button4 = new THREE.Mesh( geometry, material );
+var button4 = new THREE.Mesh( geometry,[material,material,material,material,materialb4,material] );
 button4.position.set(-320, 0, 0);
 button4.name = 'left';
 
