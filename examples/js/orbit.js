@@ -25,31 +25,17 @@ if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches)
   scene.add( ambientLight );
 
 
-  //6面分のマテリアルを生成
-  var loader = new THREE.TextureLoader();
-  var material1 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-1.jpg')
-  })
-  var material2 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-4.jpg')
-  })
-  var material3 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-5.jpg')
-  })
-  var material4 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-6.jpg')
-  })
-  var material5 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-3.jpg')
-  })
-  var material6 = new THREE.MeshBasicMaterial({
-    map: loader.load('imgs/ITF2-2.jpg')
-  })
+  
 
-      var geometry = new THREE.CubeGeometry(200, 200, 200);
-      var cube = new THREE.Mesh( geometry, [material1,material2,material3,material4,material5,material6] );
-      cube.name = 'sat';
-  scene.add(cube);
+  const loader = new THREE.FBXLoader();
+loader.load('models/ITF-2.fbx', (data) => {
+
+  const fbx = data;
+  const object = fbx.scene;
+  scene.add(object);
+});
+    //renderer.gammaOutput = true;
+    //renderer.gammaFactor = 2.2;
 
 
   // 星屑を作成
@@ -123,6 +109,8 @@ scene.add( button1,button2,button3,button4,button5,button6);
   const renderer = new THREE.WebGLRenderer({canvas: document.querySelector('#myCanvas')});
   renderer.setSize(window.innerWidth, window.innerHeight);
 
+  
+
   // マウスクリックイベントのリスナー登録
   document.addEventListener( 'mousedown', clickPosition, false );
 
@@ -139,7 +127,7 @@ setTimeout(render, 300)
   var i = 1;
   function myLoop () {
      setTimeout(function () {
-        cube.rotation.y += 0.314;
+        object.rotation.y += 0.314;
         i++;
         if (i < 11) {
            myLoop();
@@ -209,19 +197,19 @@ switch (intersects[0].object.name){
   break;
 
   case 'up':
-  cube.rotation.x -= 0.523;
+  object.rotation.x -= 0.523;
   break;
 
   case 'down':
-  cube.rotation.x += 0.523;
+  object.rotation.x += 0.523;
   break;
 
   case 'right':
-  cube.rotation.y += 0.523;
+  object.rotation.y += 0.523;
   break;
 
   case 'left':
-  cube.rotation.y -= 0.523;
+  object.rotation.y -= 0.523;
   break;
 
   case 'debug':
