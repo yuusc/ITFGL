@@ -113,7 +113,7 @@ button5.position.set(800, -400, 0);
 button5.name = 'debug';
 var button6 = new THREE.Mesh( geometryii,material );
 button6.position.set(-320, 300, 0);
-button6.name = 'textboxer';
+button6.name = 'ertextbox';
 
 scene.add( button1,button2,button3,button4,button5,button6);
 
@@ -139,12 +139,13 @@ setTimeout(render, 300)
   var i = 1;
   function myLoop () {
      setTimeout(function () {
-        cube.rotation.y += 0.314;
+        cube.rotation.x += 0.314;
+        cube.rotation.y += 0.0785;
         i++;
-        if (i < 11) {
+        if (i < 41) {
            myLoop();
         }
-     }, 300)
+     }, 50)
   }
   myLoop();
 
@@ -200,9 +201,13 @@ var raycaster = new THREE.Raycaster();
 // 取得したX、Y座標でrayの位置を更新
 raycaster.setFromCamera( mouse, camera );
 // オブジェクトの取得
-var intersects = raycaster.intersectObjects( scene.children );
+var intersects = "none" ;
+intersects = raycaster.intersectObjects( scene.children );
 
-
+if (intersects == "none"){
+  message = null;
+  details();
+}else{
 switch (intersects[0].object.name){
   case 'sat':
   changemessage();
@@ -229,12 +234,17 @@ switch (intersects[0].object.name){
   debugmenu();
   break;
 
+  case 'ertextbox':
+  message = null;
+  details();
+  break;
+
   default:
-  message = "上下左右のボタンをクリックすると衛星を回転させることが出来ます．aaa";
+  message = "オブジェクトが取得されませんでした．";
 
   break;
 }
 }
-
-
 }
+}
+//680x120

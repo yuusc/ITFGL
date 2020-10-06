@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+
+  <script type="text/javascript">
+
+    function PrintPosition(canvas, message) {
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.font = '12pt "MSゴシック"';
+        context.fillStyle = 'black';
+        context.fillText(message, 32, 48);
+    }
+
+      function getMousePosition(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+      function draw() {
+        var canvas = document.getElementById('SimpleCanvas');
+        var context = canvas.getContext('2d');
+
+        canvas.addEventListener('mousemove', function (evt) {
+          var mousePos = getMousePosition(canvas, evt);
+          var message = 'Mouse position X:' + mousePos.x + ', Y:' + mousePos.y;
+          PrintPosition(canvas, message);
+        }, false);
+      }
+  </script>
+</head>
+<body onload="draw()" style="background-color:#D0D0D0;">
+    <div style="position:absolute; top:120px; left:680px;">文字や画像</div>
+    <canvas id="SimpleCanvas" width="2280" height="1079" style="background-color:#FFFFFF;"></canvas>
+    <div>Canvas Demo</div>
+</body>
+</html>
