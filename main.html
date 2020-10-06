@@ -3,6 +3,7 @@
     <meta charset="utf-8" />
     <script src="build/three.min.js"></script>
     <script type="text/javascript" src="examples/js/orbit.js"></script>
+    <script type="text/javascript" src="examples/js/text.js"></script>
     <style>
         body {
             margin: 0;
@@ -61,7 +62,7 @@
         }
 
         .blink-after::after {
-            content: '_';
+            content: '<衛星をクリックして次へ>';
             animation: blink 1.4s infinite;
         }
 
@@ -83,13 +84,14 @@
   <body>
 <canvas id="myCanvas" style="position:fixed; top:0px; left:0px; width:100%; height:100%; z-index: 0; background-color: #000000;"></canvas>
 <!-- その真上に、2D描画領域のためのdiv要素を配置 -->
-<canvas id="canvas2d" style="position:fixed; top:0px; left:0px; width:100%; height:100%; z-index: 100; background-color:rgba(0,0,0,0);"></canvas>
+<canvas id="canvas2d" style="position:fixed; top:0px; left:0px; width:100%; height:100%; z-index: 1; background-color:rgba(0,0,0,0);"></canvas>
     <div id="dqboard">
         <div class="blackboard">
-            <div id="message" class="blink-after">
-              ITF-2 webGL DEMO
-              <br>
-              上下左右のボタンをクリックすると衛星を回転させることが出来ます．
+            <div id="message1" class="blink-after">
+                <div id="area1">
+                    ITF-2 webGL DEMO<br>
+                    上下左右のボタンをクリックすると衛星を回転させることが出来ます．
+                </div>
             </div>
         </div>
     </div>

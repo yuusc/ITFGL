@@ -7,7 +7,7 @@ function init(){
   const browserSizeY = window.innerHeight;
 
 if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
-  alert('ウィンドウサイズの関係上，スマートフォンの縦画面での表示に対応しておりません．\n画面を横にするか，タブレット・PCをご利用ください．');
+  alert('ウィンドウサイズの関係上，スマートフォンの縦画面での表示に対応しておりません．\n画面を横にしてからリロードするか，タブレット・PCをご利用ください．');
 }
 
   // カメラを作成
@@ -79,7 +79,10 @@ if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches)
   }
 //ボタンを追加
 var geometry = new THREE.BoxGeometry(60,60,60);
+var geometryi = new THREE.PlaneGeometry( 60, 60);
+var geometryii = new THREE.PlaneGeometry( 150, 60);
 var material = new THREE.MeshPhongMaterial( { color: '#ffffff' } );
+var materialbk = new THREE.MeshPhongMaterial( { color: '#000000' } );
 
 var materialb1 = new THREE.MeshBasicMaterial({
   map: loader.load('imgs/up.jpg')
@@ -93,20 +96,26 @@ var materialb3 = new THREE.MeshBasicMaterial({
 var materialb4 = new THREE.MeshBasicMaterial({
   map: loader.load('imgs/left.jpg')
 })
-var button1 = new THREE.Mesh( geometry, [material,material,material,material,materialb1,material] );
+var button1 = new THREE.Mesh( geometryi, materialb1 );
 button1.position.set(0, 320, 0);
 button1.name = 'up';
-var button2 = new THREE.Mesh( geometry, [material,material,material,material,materialb2,material] );
+var button2 = new THREE.Mesh( geometryi,materialb2 );
 button2.position.set(0, -320, 0);
 button2.name = 'down';
-var button3 = new THREE.Mesh( geometry, [material,material,material,material,materialb3,material] );
+var button3 = new THREE.Mesh( geometryi,materialb3);
 button3.position.set(320, 0, 0);
 button3.name = 'right';
-var button4 = new THREE.Mesh( geometry,[material,material,material,material,materialb4,material] );
+var button4 = new THREE.Mesh( geometryi,materialb4 );
 button4.position.set(-320, 0, 0);
 button4.name = 'left';
+var button5 = new THREE.Mesh( geometryii,material );
+button5.position.set(800, -400, 0);
+button5.name = 'debug';
+var button6 = new THREE.Mesh( geometryii,material );
+button6.position.set(-320, 300, 0);
+button6.name = 'textboxer';
 
-scene.add( button1,button2,button3,button4);
+scene.add( button1,button2,button3,button4,button5,button6);
 
 
 
@@ -140,15 +149,40 @@ setTimeout(render, 300)
   myLoop();
 
 function details(){
-  var message = null;
+  //var message = null;
   var dom = document.getElementById("dqboard");
                   if (message) {
                       dom.style.visibility = "visible";
-                      var dom_message = document.getElementById("message");
+                      var dom_message = document.getElementById("message1");
                       dom_message.innerHTML = message;
                   } else {
                       dom.style.visibility = "hidden";
                   }
+}
+var messagenum = 0;
+function changemessage(){
+    if (messagenum == 0){
+      message = "衛星を自由に動かしてみてください！";
+      messagenum ++ ;
+      //alert("デバッグ"+messagenum);
+    }else if (messagenum == 1){
+      message = "この衛星は筑波大学「結」プロジェクトが開発した超小型衛星 ITF-2 です．<br>サイズは1U(110.5×108.0×111.5mm)，質量 約1.39kgです．";
+      messagenum ++ ;
+    }else if (messagenum == 2){
+      message = "2017年1月16日にISSより放出，日本時間2019年1月4日の明け方に大気圏に再突入し運用を終了しました．";
+      messagenum ++ ;
+    }else{
+      message = "初期位置に戻したい場合はページをリロードしてください．"
+    messagenum = 1; 
+    }
+    
+    details();
+}
+var debugnum = 0;
+function debugmenu(){
+  if (debugnum >= 10){
+    alert("デバッグ");
+  }
 }
 
 function clickPosition( event ) {
@@ -169,10 +203,9 @@ raycaster.setFromCamera( mouse, camera );
 var intersects = raycaster.intersectObjects( scene.children );
 
 
-
 switch (intersects[0].object.name){
   case 'sat':
-    details();
+  changemessage();
   break;
 
   case 'up':
@@ -181,20 +214,27 @@ switch (intersects[0].object.name){
 
   case 'down':
   cube.rotation.x += 0.523;
-break;
+  break;
 
   case 'right':
   cube.rotation.y += 0.523;
-break;
+  break;
 
   case 'left':
   cube.rotation.y -= 0.523;
-break;
+  break;
+
+  case 'debug':
+  debugnum ++;
+  debugmenu();
+  break;
 
   default:
-  message = "上下左右のボタンをクリックすると衛星を回転させることが出来ます．";
+  message = "上下左右のボタンをクリックすると衛星を回転させることが出来ます．aaa";
+
   break;
 }
-
 }
+
+
 }
