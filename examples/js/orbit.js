@@ -108,7 +108,7 @@ button3.name = 'right';
 var button4 = new THREE.Mesh( geometryi,materialb4 );
 button4.position.set(-320, 0, 0);
 button4.name = 'left';
-var button5 = new THREE.Mesh( geometryii,material );
+var button5 = new THREE.Mesh( geometryii,materialbk );
 button5.position.set(800, -400, 0);
 button5.name = 'debug';
 var button6 = new THREE.Mesh( geometryii,material );
@@ -181,7 +181,7 @@ function changemessage(){
 var debugnum = 0;
 function debugmenu(){
   if (debugnum >= 10){
-    alert("デバッグ");
+    alert("デバッグ\nwindowsize:"+window.innerWidth+"x"+window.innerHeight+"\nmessage:"+message+"\ndebugnum:"+debugnum+"\nmessagenum:"+messagenum);
   }
 }
 
