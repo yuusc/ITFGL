@@ -7,7 +7,7 @@ function init(){
   const browserSizeY = window.innerHeight;
 
 if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
-  alert('ウィンドウサイズの関係上，スマートフォンの縦画面での表示に対応しておりません．\n画面を横にしてからリロードするか，タブレット・PCをご利用ください．');
+  alert('タブレットもしくはPCでの閲覧をお勧めします．\nウィンドウサイズの関係上，スマートフォンの縦画面での表示に対応しておりません．\n画面を横にしてからリロードするか，タブレット・PCをご利用ください．');
 }
 
   // カメラを作成
@@ -96,6 +96,15 @@ var materialb3 = new THREE.MeshBasicMaterial({
 var materialb4 = new THREE.MeshBasicMaterial({
   map: loader.load('imgs/left.jpg')
 })
+var materialb5 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/button1.jpg')
+})
+var materialb6 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/button2.jpg')
+})
+var materialb7 = new THREE.MeshBasicMaterial({
+  map: loader.load('imgs/button3.jpg')
+})
 var button1 = new THREE.Mesh( geometryi, materialb1 );
 button1.position.set(0, 320, 0);
 button1.name = 'up';
@@ -111,11 +120,17 @@ button4.name = 'left';
 var button5 = new THREE.Mesh( geometryii,materialbk );
 button5.position.set(800, -400, 0);
 button5.name = 'debug';
-var button6 = new THREE.Mesh( geometryii,material );
+var button6 = new THREE.Mesh( geometryii,materialb5 );
 button6.position.set(-320, 300, 0);
 button6.name = 'ertextbox';
+var button7 = new THREE.Mesh( geometryii,materialb7 );
+button7.position.set(-320, 220, 0);
+button7.name = 'itf2detail';
+var button8 = new THREE.Mesh( geometryii,materialb6 );
+button8.position.set(-320, 140, 0);
+button8.name = 'gototop';
 
-scene.add( button1,button2,button3,button4,button5,button6);
+scene.add( button1,button2,button3,button4,button5,button6,button7,button8);
 
 
 
@@ -204,6 +219,7 @@ raycaster.setFromCamera( mouse, camera );
 var intersects = "none" ;
 intersects = raycaster.intersectObjects( scene.children );
 
+
 if (intersects == "none"){
   message = null;
   details();
@@ -239,6 +255,14 @@ switch (intersects[0].object.name){
   details();
   break;
 
+  case 'gototop':
+    window.location = "https://yui.kz.tsukuba.ac.jp/";
+    break;
+  
+    case 'itf2detail':
+      window.location = "https://yui.kz.tsukuba.ac.jp/%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88/itf-2/";
+      break;
+
   default:
   message = "オブジェクトが取得されませんでした．";
 
@@ -247,4 +271,6 @@ switch (intersects[0].object.name){
 }
 }
 }
+
+
 //680x120
