@@ -102,7 +102,7 @@ button1.name = 'up';
 var button2 = new THREE.Mesh( geometryi,materialb2 );
 button2.position.set(0, -320, 0);
 button2.name = 'down';
-var button3 = new THREE.Mesh( geometryi,materialb3);
+var button3 = new THREE.Mesh( geometryi,materialb3 );
 button3.position.set(320, 0, 0);
 button3.name = 'right';
 var button4 = new THREE.Mesh( geometryi,materialb4 );
