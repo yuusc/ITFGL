@@ -5,10 +5,36 @@ function init(){
 
   const browserSizeX = window.innerWidth;
   const browserSizeY = window.innerHeight;
+  var debmessage = '';
+  var pos1 = 320; 
+  var pos2 = 320;
+  var pos3 = 300;
+  var pos4 = 220;
+  var pos5 = 140;
+  
 
-if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
-  alert('タブレットもしくはPCでの閲覧をお勧めします．\nウィンドウサイズの関係上，スマートフォンの縦画面での表示に対応しておりません．\n画面を横にしてからリロードするか，タブレット・PCをご利用ください．');
+/*if (window.matchMedia && window.matchMedia('(max-device-width: 780px)').matches) {
+  pos1 = 180;
+  pos2 = 120;
+  pos3 = 310;
+  pos4 = 250;
+  pos5 = 190;
+
 }
+*/
+var regexp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|silk/i;
+if(window.navigator.userAgent.search(regexp) !== -1){
+  debmessage = 'モバイル端末';
+  pos1 = 180;
+  pos2 = 120;
+  pos3 = 310;
+  pos4 = 250;
+  pos5 = 190;
+  alert(debmessage);
+}else{
+  debmessage = 'モバイル端末ではありません';
+}
+
 
   // カメラを作成
   const camera = new THREE.PerspectiveCamera(45, browserSizeX / browserSizeY);
@@ -106,28 +132,28 @@ var materialb7 = new THREE.MeshBasicMaterial({
   map: loader.load('imgs/button3.jpg')
 })
 var button1 = new THREE.Mesh( geometryi, materialb1 );
-button1.position.set(0, 320, 0);
+button1.position.set(0, pos1, 0);
 button1.name = 'up';
 var button2 = new THREE.Mesh( geometryi,materialb2 );
-button2.position.set(0, -320, 0);
+button2.position.set(0, -pos1, 0);
 button2.name = 'down';
 var button3 = new THREE.Mesh( geometryi,materialb3 );
-button3.position.set(320, 0, 0);
+button3.position.set(pos1, 0, 0);
 button3.name = 'right';
 var button4 = new THREE.Mesh( geometryi,materialb4 );
-button4.position.set(-320, 0, 0);
+button4.position.set(-pos1, 0, 0);
 button4.name = 'left';
 var button5 = new THREE.Mesh( geometryii,materialbk );
 button5.position.set(800, -400, 0);
 button5.name = 'debug';
 var button6 = new THREE.Mesh( geometryii,materialb5 );
-button6.position.set(-320, 300, 0);
+button6.position.set(-pos2, pos3, 0);
 button6.name = 'ertextbox';
 var button7 = new THREE.Mesh( geometryii,materialb7 );
-button7.position.set(-320, 220, 0);
+button7.position.set(-pos2, pos4, 0);
 button7.name = 'itf2detail';
 var button8 = new THREE.Mesh( geometryii,materialb6 );
-button8.position.set(-320, 140, 0);
+button8.position.set(-pos2, pos5, 0);
 button8.name = 'gototop';
 
 scene.add( button1,button2,button3,button4,button5,button6,button7,button8);
@@ -197,7 +223,7 @@ function changemessage(){
 var debugnum = 0;
 function debugmenu(){
   if (debugnum >= 10){
-    alert("デバッグ\nwindowsize:"+window.innerWidth+"x"+window.innerHeight+"\nmessage:"+message+"\ndebugnum:"+debugnum+"\nmessagenum:"+messagenum);
+    alert("デバッグ\nwindowsize:"+window.innerWidth+"x"+window.innerHeight+"\nmessage:"+message+"\ndebugnum:"+debugnum+"\nmessagenum:"+messagenum+"\ndebmessage:"+debmessage+"\nregexp\n(Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|silk)なら-1以外:"+window.navigator.userAgent.search(regexp));
   }
 }
 
@@ -271,6 +297,3 @@ switch (intersects[0].object.name){
 }
 }
 }
-
-
-//680x120
