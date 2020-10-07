@@ -11,6 +11,8 @@ function init(){
   var pos3 = 300;
   var pos4 = 220;
   var pos5 = 140;
+  var buttonsize1 = 60;
+  var buttonsize2 = 150;
   
 
 /*if (window.matchMedia && window.matchMedia('(max-device-width: 780px)').matches) {
@@ -30,9 +32,14 @@ if(window.navigator.userAgent.search(regexp) !== -1){
   pos3 = 310;
   pos4 = 250;
   pos5 = 190;
-  alert(debmessage);
+  //alert(debmessage);
 }else{
   debmessage = 'モバイル端末ではありません';
+  buttonsize1 = 90;
+  buttonsize2 = 225;
+  pos3 = 330;
+  pos4 = 230;
+  pos5 = 130;
 }
 
 
@@ -106,7 +113,7 @@ if(window.navigator.userAgent.search(regexp) !== -1){
 //ボタンを追加
 var geometry = new THREE.BoxGeometry(60,60,60);
 var geometryi = new THREE.PlaneGeometry( 60, 60);
-var geometryii = new THREE.PlaneGeometry( 150, 60);
+var geometryii = new THREE.PlaneGeometry( buttonsize2, buttonsize1);
 var material = new THREE.MeshPhongMaterial( { color: '#ffffff' } );
 var materialbk = new THREE.MeshPhongMaterial( { color: '#000000' } );
 
