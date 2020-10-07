@@ -298,9 +298,22 @@ switch (intersects[0].object.name){
 
   default:
   message = "オブジェクトが取得されませんでした．";
-
   break;
 }
+
+document.body.addEventListener('keydown',
+    event => {
+        if (event.key === 'ArrowUp' ) {
+          cube.rotation.x -= 0.2615;
+        }else if(event.key === 'ArrowDown'){
+          cube.rotation.x += 0.2615;
+        }else if(event.key === 'ArrowRight'){
+          cube.rotation.y += 0.2615;
+        }else if(event.key === 'ArrowLeft'){
+          cube.rotation.y -= 0.2615;
+        }
+    });
 }
 }
 }
+
